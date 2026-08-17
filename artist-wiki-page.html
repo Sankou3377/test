@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENJIN - プロフィール</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --text:#202122;
+    --text-muted:#54595d;
+    --link:#0645ad;
+    --link-visited:#0b0080;
+    --box-bg:#f8f9fa;
+    --box-border:#a2a9b1;
+    --rule:#a2a9b1;
+    --hover-bg:#eaf3ff;
+    --edit-color:#3366cc;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Hiragino Sans","Helvetica Neue",Arial,"Yu Gothic",sans-serif;
+    font-size:15px;
+    line-height:1.7;
+  }
+  .topbar{
+    background:#f8f9fa;
+    border-bottom:1px solid var(--box-border);
+    padding:6px 24px;
+    font-size:12px;
+    color:var(--text-muted);
+  }
+  .wrap{
+    max-width:1000px;
+    margin:0 auto;
+    padding:20px 24px 60px;
+  }
+  .masthead{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:3px solid var(--rule);
+    padding-bottom:10px;
+    margin-bottom:6px;
+  }
+  .masthead .logo{
+    font-family:Georgia,"Times New Roman",serif;
+    font-style:italic;
+    font-size:13px;
+    color:var(--text-muted);
+    letter-spacing:0.5px;
+  }
+  .lang-note{
+    font-size:12px;
+    color:var(--text-muted);
+  }
+
+  h1.article-title{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:32px;
+    font-weight:400;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:8px;
+    margin:0 0 4px;
+  }
+  h1.article-title .clickable-name{
+    cursor:pointer;
+    border-bottom:1px dashed var(--link);
+    transition:background 0.15s ease;
+  }
+  h1.article-title .clickable-name:hover{
+    background:var(--hover-bg);
+  }
+  .article-sub{
+    font-size:12px;
+    color:var(--text-muted);
+    margin-bottom:18px;
+  }
+  .hint-badge{
+    display:inline-block;
+    margin-left:8px;
+    font-size:11px;
+    color:#8a6d00;
+    background:#fff6da;
+    border:1px solid #e6d38a;
+    border-radius:3px;
+    padding:1px 6px;
+  }
+
+  .content-area{
+    overflow:visible;
+  }
+
+  .infobox{
+    float:right;
+    width:280px;
+    margin:0 0 20px 20px;
+    border:1px solid var(--box-border);
+    background:var(--box-bg);
+    font-size:13px;
+  }
+  .infobox-title{
+    text-align:center;
+    font-weight:700;
+    font-size:16px;
+    padding:8px 6px 4px;
+    border-bottom:1px solid var(--box-border);
+  }
+  .infobox-image-wrap{
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid var(--box-border);
+  }
+  .infobox-image-wrap svg{
+    width:100%;
+    max-width:220px;
+    display:block;
+    margin:0 auto;
+    border:1px solid var(--box-border);
+    background:#fff;
+  }
+  .image-caption{
+    font-size:11px;
+    color:var(--text-muted);
+    margin-top:6px;
+  }
+  .image-caption .toggle-hint{
+    color:var(--edit-color);
+    cursor:pointer;
+  }
+  .infobox table{
+    width:100%;
+    border-collapse:collapse;
+  }
+  .infobox td{
+    padding:6px 8px;
+    vertical-align:top;
+    border-top:1px solid #eaecf0;
+  }
+  .infobox td.k{
+    width:38%;
+    color:var(--text-muted);
+    font-weight:600;
+  }
+
+  .toc{
+    display:inline-block;
+    background:var(--box-bg);
+    border:1px solid var(--box-border);
+    padding:12px 20px;
+    margin:6px 0 20px;
+    font-size:14px;
+  }
+  .toc-title{
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .toc ol{
+    margin:0;
+    padding-left:20px;
+  }
+  .toc a{
+    color:var(--link);
+    text-decoration:none;
+  }
+  .toc a:hover{ text-decoration:underline; }
+
+  h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;
+    font-size:22px;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:4px;
+    margin:28px 0 10px;
+  }
+  h2 .edit-link, h3 .edit-link{
+    float:right;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    font-weight:400;
+    color:var(--edit-color);
+    cursor:default;
+  }
+  h3{
+    font-size:17px;
+    font-weight:700;
+    margin:20px 0 8px;
+  }
+
+  p{ margin:0 0 12px; }
+  a{ color:var(--link); }
+
+  .placeholder{
+    background:#fff6da;
+    border:1px dashed #e6d38a;
+    color:#5c4a00;
+    padding:2px 4px;
+    border-radius:2px;
+  }
+
+  ul.plain{ margin:0 0 12px; padding-left:22px; }
+
+  .refs{
+    font-size:12.5px;
+    color:var(--text-muted);
+  }
+  .refs ol{ padding-left:20px; }
+
+  .disclaimer{
+    clear:both;
+    margin-top:40px;
+    padding-top:14px;
+    border-top:1px solid var(--rule);
+    font-size:11.5px;
+    color:var(--text-muted);
+  }
+
+  @media (max-width:640px){
+    .infobox{
+      float:none;
+      width:100%;
+      margin:0 0 20px 0;
+    }
+    h1.article-title{ font-size:26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  
+
+  <div class="masthead">
+    <div class="logo">ENJIN Profile</div>
+  </div>
+
+  <h1 class="article-title">
+    <span class="clickable-name" id="artistName" title="クリックすると画像が切り替わります">RYONO</span>
+  </h1>
+  <div class="article-sub">出典: 吉本興業</div>
+
+  <div class="content-area">
+
+    <aside class="infobox">
+      <div class="infobox-title" id="infoboxTitle">RYONO</div>
+      <div class="infobox-image-wrap">
+        <div id="imgSlot"><!-- JS が画像を挿入 --></div>
+        <div class="image-caption">
+          <span id="captionText">プロフィール写真</span><br>
+      </div>
+      <table>
+        <tr><td class="k">本名</td><td class="placeholder">草地稜之</td></tr>
+        <tr><td class="k">生年月日</td><td class="placeholder">1998年6月17日</td></tr>
+        <tr><td class="k">出身地</td><td class="placeholder">東京都</td></tr>
+        <tr><td class="k">ジャンル</td><td class="placeholder">J-POP</td></tr>
+        <tr><td class="k">レーベル</td><td class="placeholder">UNIVERSAL MUSIC</td></tr>
+        <tr><td class="k">事務所</td><td class="placeholder">吉本興業</td></tr>
+      </table>
+    </aside>
+
+    <p><b>草地稜之</b>(RYONO)は、<span class="placeholder">日本(東京都)</span>出身の<span class="placeholder">JPOP</span>アーティスト/俳優。<span class="placeholder">
+      活動内容の一言紹介をここに入れてください。</span></p>
+
+    <div class="toc">
+      <div class="toc-title">目次</div>
+      <ol>
+        <li><a href="#overview">概要</a></li>
+        <li><a href="#history">経歴</a></li>
+        <li><a href="#activity">活動</a></li>
+        <li><a href="#links">外部リンク</a></li>
+      </ol>
+    </div>
+
+    <h2 id="overview">概要<span class="edit-link"><a href="https://enjin-official.jp/">[編集]</a></span></h2>
+    <p><span class="placeholder">ここにアーティストの概要・特徴を2〜4行で記入してください。</span>音楽性、ビジュアル、活動テーマなど、プロフィールの核となる部分です。</p>
+
+    <h2 id="history">経歴<span class="edit-link">[編集]</span></h2>
+    <h3>デビュー前</h3>
+    <p><span class="placeholder">生まれ育った環境や、活動を始めるきっかけについて記入してください。</span></p>
+    <h3>デビュー後</h3>
+    <p><span class="placeholder">デビュー作品や、これまでの主な活動の流れを記入してください。</span></p>
+
+    <h2 id="activity">活動<span class="edit-link">[編集]</span></h2>
+    <p><span class="placeholder">現在の活動内容(ライブ、配信、コラボレーションなど)を記入してください。</span></p>
+    <ul class="plain">
+      <li class="placeholder">代表的な活動・イベント名(仮)</li>
+      <li class="placeholder">代表的な活動・イベント名(仮)</li>
+    </ul>
+
+    <h2 id="links">外部リンク<span class="edit-link">[編集]</span></h2>
+    <ul class="plain">
+      <li><a href="https://enjin-official.jp/" class="placeholder">公式サイト</a></li>
+      <li><a href="https://x.com/official_enjin" class="placeholder">X (旧Twitter)</a></li>
+      <li><a href="https://www.instagram.com/official_enjin/" class="placeholder">Instagram</a></li>
+      <li><a href="https://www.youtube.com/channel/UCk7uL1QPQ1k9DrXectZ3sXw" class="placeholder">YouTube</a></li>
+    </ul>
+
+    <div class="refs">
+      <h2 style="border-bottom:none;font-size:16px;margin-bottom:6px;">脚注</h2>
+      <ol>
+        <li class="placeholder">出典情報をここに追加してください(任意)</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="disclaimer">
+    このページはアーティストのプロモーション用に作成されたサンプルページであり、実在の百科事典サービスとは関係ありません。<br>
+  </div>
+
+</div>
+
+<script>
+  // 2種類のプレースホルダー画像(SVG)。実際の写真に差し替え可能。
+  const images = [
+  {
+    caption: "プロフィール写真 - メインカット",
+    html: `<img src="ryono.jpeg" style="width:100%;max-width:220px;display:block;margin:0 auto;">`
+  },
+  {
+    caption: "プロフィール写真 - アザーカット",
+    html: `<img src="ryono_2.jpeg" style="width:100%;max-width:220px;display:block;margin:0 auto;">`
+  }
+  ];
+
+  let current = 0;
+
+  function renderImage(){
+    document.getElementById('imgSlot').innerHTML = images[current].html;
+    document.getElementById('captionText').textContent = images[current].caption;
+  }
+
+  function toggleImage(){
+    current = (current + 1) % images.length;
+    renderImage();
+  }
+
+  document.getElementById('artistName').addEventListener('click', toggleImage);
+
+  renderImage();
+</script>
+
+</body>
+</html>
